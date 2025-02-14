@@ -37,4 +37,11 @@ class DB(context: Context, string: String = "SentimentAnalysis", cursorFactory: 
         val cursor : Cursor = db.rawQuery("select * from $tableName",null)
         return cursor
     }
+
+    fun onDelete(){
+        val db : SQLiteDatabase = this.writableDatabase
+        db.delete(tableName,null,null)
+//        db.execSQL("delete from $tableName")
+        db.close()
+    }
 }

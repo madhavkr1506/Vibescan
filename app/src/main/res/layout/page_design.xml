@@ -172,6 +172,7 @@
     </androidx.cardview.widget.CardView>
 
     <ImageView
+        android:id="@+id/imageBomb"
         android:layout_width="149dp"
         android:layout_height="236dp"
         android:src="@drawable/img6"

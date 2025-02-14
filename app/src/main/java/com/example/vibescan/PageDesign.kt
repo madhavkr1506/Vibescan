@@ -3,6 +3,7 @@ package com.example.vibescan
 import android.database.Cursor
 import android.os.Bundle
 import android.util.Log
+import android.widget.ImageView
 import android.widget.ListView
 import androidx.appcompat.app.AppCompatActivity
 import kotlinx.coroutines.CoroutineScope
@@ -66,6 +67,13 @@ class PageDesign : AppCompatActivity() {
 
             withContext(Dispatchers.Main){
                 neutralList.adapter = neutralAdapter
+            }
+
+            val imageBomb = findViewById<ImageView>(R.id.imageBomb)
+            withContext(Dispatchers.Main){
+                imageBomb.setOnClickListener{
+                    dbHelper.onDelete()
+                }
             }
 
         }
