@@ -85,41 +85,44 @@ class MainActivity : AppCompatActivity() {
             val cleanText = sentence.replace("[^a-zA-Z\\s]","")
             val arrayOfWords : List<String> = cleanText.trim().split(" ")
             val positiveWord = listOf(
-                "amazing", "awesome", "beautiful", "brilliant", "cheerful", "compassionate", "confident",
-                "courageous", "creative", "delightful", "efficient", "elegant", "encouraging", "energetic",
-                "excellent", "exceptional", "fabulous", "fantastic", "friendly", "generous", "gentle",
-                "genuine", "graceful", "grateful", "great", "happy", "harmonious", "helpful", "honest",
-                "hopeful", "incredible", "inspiring", "intelligent", "joyful", "kind", "knowledgeable",
-                "lively", "lovely", "loyal", "magnificent", "marvelous", "motivated", "nice", "optimistic",
-                "outstanding", "passionate", "peaceful", "perfect", "pleasant", "positive", "powerful",
-                "proactive", "productive", "radiant", "reliable", "resilient", "respectful", "responsible",
-                "satisfying", "selfless", "sincere", "smart", "spectacular", "splendid", "successful",
-                "supportive", "terrific", "thankful", "thoughtful", "trustworthy", "understanding",
-                "unique", "upbeat", "vibrant", "victorious", "warmhearted", "welcoming", "wholehearted",
-                "wise", "wonderful", "worthy", "zealous", "ambitious", "approachable", "attentive",
-                "charismatic", "cheerful", "charming", "considerate", "determined", "enthusiastic",
-                "fearless", "forgiving", "hardworking", "humble", "inventive", "joyous", "lovable",
-                "mindful", "respectable", "spirited", "tender"
+                "accept", "admire", "admir", "agree", "amaze", "amazing", "appreciate",
+                "attract", "awesome", "believe", "calm", "care", "cheer", "clean",
+                "comfort", "enjoy", "excite", "exciting", "friend", "friendly", "funny",
+                "generous", "gentle", "genuine", "great", "happy", "help", "honest",
+                "hope", "hopeful", "inspire", "joy", "kind", "love", "loyal", "neat",
+                "nice", "optimist", "optimistic", "perfect", "pleasant", "polite",
+                "proud", "relax", "respect", "satisfy", "share", "smart", "strong",
+                "support", "sweet", "thankful", "trust", "understand", "wonder",
+                "wonderful"
             )
-
             val negativeWord = listOf(
-                "angry", "anxious", "annoyed", "appalling", "awful", "bad", "bitter", "boring", "chaotic",
-                "clumsy", "cold", "combative", "confused", "corrupt", "cruel", "damaging", "dark", "deceitful",
-                "defeated", "depressed", "desperate", "difficult", "disappointing", "disastrous",
-                "dishonest", "distressing", "dreadful", "embarrassed", "envious", "evil", "failed",
-                "fearful", "filthy", "frustrated", "gloomy", "greedy", "grim", "guilty", "hateful", "heartless",
-                "helpless", "hopeless", "hostile", "hurtful", "ignorant", "illogical", "immoral",
-                "impatient", "impolite", "incompetent", "inconsiderate", "insecure", "insensitive",
-                "intolerant", "jealous", "judgmental", "lazy", "lonely", "lousy", "malicious",
-                "mediocre", "messy", "miserable", "monotonous", "narrow-minded", "needy", "negative",
-                "neglectful", "nervous", "noisy", "offensive", "overwhelmed", "painful", "pessimistic",
-                "pointless", "poor", "reckless", "regretful", "resentful", "rigid", "rude", "sad",
-                "selfish", "shallow", "shameful", "short-tempered", "slow", "stubborn", "stupid",
-                "suspicious", "terrible", "threatening", "tiresome", "tragic", "ugly", "unbearable",
-                "unfair", "unfriendly", "unhappy", "unhelpful", "unjust", "weak", "worthless"
+                "abuse", "angry", "annoy", "argue", "bad", "bore", "boring", "break",
+                "cheat", "complain", "confuse", "confusing", "cry", "damage", "dirty",
+                "disappoint", "disappointing", "disrespect", "fail", "fear", "fight",
+                "forget", "guilt", "guilty", "hate", "hurt", "jealous", "lazy", "lie",
+                "lonely", "lose", "mean", "mess", "messy", "mistake", "neglect",
+                "nervous", "noisy", "rude", "sad", "selfish", "shout", "sick", "slow",
+                "stress", "stupid", "suspect", "terrible", "tire", "tired", "ugly",
+                "unfair", "unhappy", "upset", "weak", "worthless", "wrong"
             )
 
+
+            val lemmatizationList : ArrayList<String> = arrayListOf()
             for(word in arrayOfWords){
+                if(word.endsWith("ing") && word.length > 4){
+                    lemmatizationList.add(word.substring(0,word.length - 3).lowercase())
+                }
+                else if(word.endsWith("es") && word.length > 3){
+                    lemmatizationList.add(word.substring(0,word.length - 2).lowercase())
+                }else if(word.endsWith("s") && word.length > 2){
+                    lemmatizationList.add(word.substring(0,word.length - 1).lowercase())
+                }
+                else{
+                    lemmatizationList.add(word.lowercase())
+                }
+            }
+
+            for(word in lemmatizationList){
                 if(positiveWord.contains(word)){
                     positiveCount++
                 }else if(negativeWord.contains(word)){

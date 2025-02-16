@@ -21,5 +21,6 @@ class NegativeListCustomAdapter(context: Context, private val NegativeSentimentL
 
     override fun getCount(): Int {
         return NegativeSentenceList.size
+
     }
 }
